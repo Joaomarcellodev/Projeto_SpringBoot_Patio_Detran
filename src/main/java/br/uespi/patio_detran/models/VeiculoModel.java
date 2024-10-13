@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 
@@ -35,7 +37,12 @@ public class VeiculoModel implements Serializable{
     private String placa;
 
 
-
+    // Relacionamento
+    
+    @ManyToOne
+    @JoinColumn(name = "propietario_id")
+    private PropietarioModel propietario;
+    
     // Getters and Setters
 
     public static long getSerialversionuid() {
@@ -72,6 +79,14 @@ public class VeiculoModel implements Serializable{
 
     public void setPlaca(String placa) {
         this.placa = placa;
+    }
+
+    public PropietarioModel getPropietario() {
+        return propietario;
+    }
+
+    public void setPropietario(PropietarioModel propietario) {
+        this.propietario = propietario;
     }
 
 }
