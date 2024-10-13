@@ -25,10 +25,10 @@ public class MultaModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column
+    @Column(nullable = false)
     private String descricao;
 
-    @Column
+    @Column(nullable = false)
     private float preco;
 
 

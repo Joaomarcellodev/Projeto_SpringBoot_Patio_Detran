@@ -25,10 +25,10 @@ public class GuardaModel implements Serializable {
     private UUID id;
 
 
-    @Column
+    @Column(nullable = false)
     private String nome;
 
-    @Column
+    @Column(nullable = false)
     private String sexo;
 
 

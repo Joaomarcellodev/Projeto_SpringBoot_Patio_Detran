@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
@@ -37,6 +39,12 @@ public class PropietarioModel implements Serializable{
 
     @Column(nullable = false)
     private String sexo;
+
+    // Relacionamentos
+
+    @OneToMany
+    @JoinColumn(name= "veiculo_id")
+    private VeiculoModel veiculo;
 
 
     // Getters and Setters 
@@ -84,5 +92,13 @@ public class PropietarioModel implements Serializable{
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
-    
+
+    public VeiculoModel getVeiculo() {
+        return veiculo;
+    }
+
+    public void setVeiculo(VeiculoModel veiculo) {
+        this.veiculo = veiculo;
+    }
+
 }
