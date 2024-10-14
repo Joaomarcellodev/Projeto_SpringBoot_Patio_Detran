@@ -1,11 +1,15 @@
 package br.uespi.patio_detran.models;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -42,10 +46,9 @@ public class PropietarioModel implements Serializable{
 
     // Relacionamentos
 
-    @OneToMany
-    @JoinColumn(name= "veiculo_id")
-    private VeiculoModel veiculo;
-
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "propietario",fetch = FetchType.LAZY)
+    private Set<VeiculoModel> veiculos = new HashSet<>();
 
     // Getters and Setters 
 
@@ -93,12 +96,14 @@ public class PropietarioModel implements Serializable{
         this.sexo = sexo;
     }
 
-    public VeiculoModel getVeiculo() {
-        return veiculo;
+    public Set<VeiculoModel> getVeiculos() {
+        return veiculos;
     }
 
-    public void setVeiculo(VeiculoModel veiculo) {
-        this.veiculo = veiculo;
+    public void setVeiculos(Set<VeiculoModel> veiculos) {
+        this.veiculos = veiculos;
     }
+
+    
 
 }

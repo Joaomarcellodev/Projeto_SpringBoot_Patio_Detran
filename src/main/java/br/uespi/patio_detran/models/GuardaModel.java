@@ -32,6 +32,11 @@ public class GuardaModel implements Serializable {
     private String sexo;
 
 
+    // Relacionamento
+
+    
+
+
 
     // Getters and Setters 
 
