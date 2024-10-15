@@ -1,13 +1,19 @@
 package br.uespi.patio_detran.models;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
@@ -30,6 +36,11 @@ public class MultaModel implements Serializable {
 
     @Column(nullable = false)
     private float preco;
+
+    // Relacionamento
+     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+     @OneToMany(mappedBy = "guarda",fetch = FetchType.LAZY)
+     private Set<MultaModel> multas = new HashSet<>();
 
 
     // Getters and Setters 
@@ -61,4 +72,14 @@ public class MultaModel implements Serializable {
     public void setPreco(float preco) {
         this.preco = preco;
     }
+
+    public Set<MultaModel> getMultas() {
+        return multas;
+    }
+
+    public void setMultas(Set<MultaModel> multas) {
+        this.multas = multas;
+    }
+
+    
 }
