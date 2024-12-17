@@ -6,5 +6,5 @@ import br.uespi.patio_detran.models.PessoaModel;
 import java.util.UUID;
 
 @Repository
-public interface PessoaRepository extends JpaRepository<PessoaModel, UUID> {
+public interface PessoaRepository extends JpaRepository<PessoaModel, UUID> {
 }

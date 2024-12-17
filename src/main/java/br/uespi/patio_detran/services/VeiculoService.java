@@ -1,3 +1,4 @@
+
 package br.uespi.patio_detran.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,5 @@ public class VeiculoService {
 
     public void deleteVeiculo(UUID id) {
         veiculoRepository.deleteById(id);
-    }
+    }
 }

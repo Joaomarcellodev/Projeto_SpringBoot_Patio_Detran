@@ -41,5 +41,5 @@ public class PessoaService {
 
     public void deletePessoa(UUID id) {
         pessoaRepository.deleteById(id);
-    }
+    }
 }

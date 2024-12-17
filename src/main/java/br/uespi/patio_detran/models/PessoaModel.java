@@ -53,5 +53,5 @@ public class PessoaModel {
 
     public void setTipoPessoa(TipoPessoa tipoPessoa) {
         this.tipoPessoa = tipoPessoa;
-    }
+    }
 }
