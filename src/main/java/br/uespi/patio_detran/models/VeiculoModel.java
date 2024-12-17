@@ -1,27 +1,14 @@
 package br.uespi.patio_detran.models;
 
 import java.util.UUID;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import java.io.Serializable;
-
-
 
 @Entity
 @Table(name="TB_VEICULO")
-public class VeiculoModel implements Serializable{
+public class VeiculoModel implements Serializable {
 
-    public static final long serialVersionUID = 1l;
-
-
-    // Atributos
+    public static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,18 +23,11 @@ public class VeiculoModel implements Serializable{
     @Column(nullable = false)
     private String placa;
 
-
-    // Relacionamento
-    
     @ManyToOne
     @JoinColumn(name = "propietario_id")
-    private PropietarioModel propietario;
-    
-    // Getters and Setters
+    private PessoaModel propietario;
 
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
+    // Getters and Setters
 
     public UUID getId() {
         return id;
@@ -81,12 +61,15 @@ public class VeiculoModel implements Serializable{
         this.placa = placa;
     }
 
-    public PropietarioModel getPropietario() {
+    public PessoaModel getPropietario() {
         return propietario;
     }
 
-    public void setPropietario(PropietarioModel propietario) {
+    public void setPropietario(PessoaModel propietario) {
         this.propietario = propietario;
     }
 
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
 }

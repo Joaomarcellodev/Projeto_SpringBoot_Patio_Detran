@@ -6,5 +6,5 @@ import br.uespi.patio_detran.models.MultaModel;
 import java.util.UUID;
 
 @Repository
-public interface MultaRepository extends JpaRepository<MultaModel, UUID> {
+public interface MultaRepository extends JpaRepository<MultaModel, UUID> {
 }

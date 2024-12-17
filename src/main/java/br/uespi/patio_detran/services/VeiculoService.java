@@ -42,5 +42,5 @@ public class VeiculoService {
 
     public void deleteVeiculo(UUID id) {
         veiculoRepository.deleteById(id);
-    }
+    }
 }
