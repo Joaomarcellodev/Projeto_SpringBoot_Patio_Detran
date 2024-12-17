@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import br.uespi.patio_detran.models.PessoaModel;
 import br.uespi.patio_detran.services.PessoaService;
 
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -18,7 +19,7 @@ public class PessoaController {
     private PessoaService pessoaService;
 
     @PostMapping
-    public ResponseEntity<PessoaModel> createPessoa(@RequestBody PessoaModel pessoa) {
+    public ResponseEntity<PessoaModel> createPessoa(@Valid @RequestBody PessoaModel pessoa) {
         return ResponseEntity.ok(pessoaService.createPessoa(pessoa));
     }
 
@@ -38,7 +39,7 @@ public class PessoaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PessoaModel> updatePessoa(@PathVariable UUID id, @RequestBody PessoaModel pessoa) {
+    public ResponseEntity<PessoaModel> updatePessoa(@PathVariable UUID id, @Valid @RequestBody PessoaModel pessoa) {
         PessoaModel updatedPessoa = pessoaService.updatePessoa(id, pessoa);
         if (updatedPessoa != null) {
             return ResponseEntity.ok(updatedPessoa);

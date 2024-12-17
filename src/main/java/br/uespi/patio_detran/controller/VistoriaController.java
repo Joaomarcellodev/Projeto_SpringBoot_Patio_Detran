@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import br.uespi.patio_detran.models.VistoriaModel;
 import br.uespi.patio_detran.services.VistoriaService;
 
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -18,7 +19,7 @@ public class VistoriaController {
     private VistoriaService vistoriaService;
 
     @PostMapping
-    public ResponseEntity<VistoriaModel> createVistoria(@RequestBody VistoriaModel vistoria) {
+    public ResponseEntity<VistoriaModel> createVistoria(@Valid @RequestBody VistoriaModel vistoria) {
         return ResponseEntity.ok(vistoriaService.createVistoria(vistoria));
     }
 
@@ -38,7 +39,7 @@ public class VistoriaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<VistoriaModel> updateVistoria(@PathVariable UUID id, @RequestBody VistoriaModel vistoria) {
+    public ResponseEntity<VistoriaModel> updateVistoria(@PathVariable UUID id, @Valid @RequestBody VistoriaModel vistoria) {
         VistoriaModel updatedVistoria = vistoriaService.updateVistoria(id, vistoria);
         if (updatedVistoria != null) {
             return ResponseEntity.ok(updatedVistoria);

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import br.uespi.patio_detran.models.VeiculoModel;
 import br.uespi.patio_detran.services.VeiculoService;
 
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -18,7 +19,7 @@ public class VeiculoController {
     private VeiculoService veiculoService;
 
     @PostMapping
-    public ResponseEntity<VeiculoModel> createVeiculo(@RequestBody VeiculoModel veiculo) {
+    public ResponseEntity<VeiculoModel> createVeiculo(@Valid @RequestBody VeiculoModel veiculo) {
         return ResponseEntity.ok(veiculoService.createVeiculo(veiculo));
     }
 
@@ -38,7 +39,7 @@ public class VeiculoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<VeiculoModel> updateVeiculo(@PathVariable UUID id, @RequestBody VeiculoModel veiculo) {
+    public ResponseEntity<VeiculoModel> updateVeiculo(@PathVariable UUID id, @Valid @RequestBody VeiculoModel veiculo) {
         VeiculoModel updatedVeiculo = veiculoService.updateVeiculo(id, veiculo);
         if (updatedVeiculo != null) {
             return ResponseEntity.ok(updatedVeiculo);

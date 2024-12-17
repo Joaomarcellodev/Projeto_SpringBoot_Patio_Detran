@@ -2,6 +2,7 @@ package br.uespi.patio_detran.models;
 
 import java.util.UUID;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "TB_PESSOA")
@@ -11,15 +12,20 @@ public class PessoaModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    @NotNull(message = "O nome não pode ser nulo")
+    @Size(min = 2, max = 50, message = "O nome deve ter entre 2 e 50 caracteres")
     @Column(nullable = false)
     private String nome;
 
+    @NotNull(message = "O sexo não pode ser nulo")
+    @Size(max = 10, message = "O sexo deve ter no máximo 10 caracteres")
     @Column(nullable = false)
     private String sexo;
 
-    @Column(nullable = false)
+    @NotNull(message = "A categoria não pode ser nula")
     @Enumerated(EnumType.STRING)
-    private TipoPessoa tipoPessoa;
+    @Column(nullable = false)
+    private Categoria categoria;
 
     // Getters e Setters
 
@@ -47,11 +53,11 @@ public class PessoaModel {
         this.sexo = sexo;
     }
 
-    public TipoPessoa getTipoPessoa() {
-        return tipoPessoa;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setTipoPessoa(TipoPessoa tipoPessoa) {
-        this.tipoPessoa = tipoPessoa;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }

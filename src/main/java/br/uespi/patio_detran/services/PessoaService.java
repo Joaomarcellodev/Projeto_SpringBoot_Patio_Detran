@@ -33,7 +33,7 @@ public class PessoaService {
             PessoaModel pessoa = existingPessoa.get();
             pessoa.setNome(updatedPessoa.getNome());
             pessoa.setSexo(updatedPessoa.getSexo());
-            pessoa.setTipoPessoa(updatedPessoa.getTipoPessoa());
+            pessoa.setCategoria(updatedPessoa.getCategoria());
             return pessoaRepository.save(pessoa);
         }
         return null;

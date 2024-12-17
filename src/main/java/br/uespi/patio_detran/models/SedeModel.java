@@ -5,17 +5,17 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
 @Entity
-@Table(name = "TB_VISTORIA")
-public class VistoriaModel {
+@Table(name = "TB_SEDE")
+public class SedeModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @NotNull(message = "A descrição não pode ser nula")
-    @Size(min = 2, max = 100, message = "A descrição deve ter entre 2 e 100 caracteres")
+    @NotNull(message = "O nome não pode ser nulo")
+    @Size(min = 2, max = 50, message = "O nome deve ter entre 2 e 50 caracteres")
     @Column(nullable = false)
-    private String descricao;
+    private String nome;
 
     // Getters e Setters
 
@@ -27,11 +27,11 @@ public class VistoriaModel {
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getNome() {
+        return nome;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }

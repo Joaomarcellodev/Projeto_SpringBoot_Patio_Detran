@@ -4,19 +4,24 @@ import java.io.Serializable;
 import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name="TB_MULTA")
 public class MultaModel implements Serializable {
-    public static final long serialVersionUID = 1L;
+    public static final long serialversionuid = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    @NotNull(message = "A descrição não pode ser nula")
+    @Size(min = 2, max = 100, message = "A descrição deve ter entre 2 e 100 caracteres")
     @Column(nullable = false)
     private String descricao;
 
+    @NotNull(message = "O preço não pode ser nulo")
+    @Min(value = 0, message = "O preço deve ser maior ou igual a zero")
     @Column(nullable = false)
     private float preco;
 
@@ -25,7 +30,7 @@ public class MultaModel implements Serializable {
     @JoinColumn(name = "guarda_id")
     private PessoaModel guarda;
 
-    // Getters and Setters
+    // Getters e Setters
 
     public UUID getId() {
         return id;
@@ -60,6 +65,6 @@ public class MultaModel implements Serializable {
     }
 
     public static long getSerialversionuid() {
-        return serialVersionUID;
+        return serialversionuid;
     }
 }

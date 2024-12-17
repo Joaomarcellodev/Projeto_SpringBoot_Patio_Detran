@@ -1,6 +1,6 @@
 package br.uespi.patio_detran.models;
 
-public enum TipoPessoa {
+public enum Categoria {
     GUARDA,
     PROPRIETARIO
 }

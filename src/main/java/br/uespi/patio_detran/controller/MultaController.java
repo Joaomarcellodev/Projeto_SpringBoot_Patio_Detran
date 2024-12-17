@@ -6,10 +6,11 @@ import org.springframework.web.bind.annotation.*;
 import br.uespi.patio_detran.models.MultaModel;
 import br.uespi.patio_detran.services.MultaService;
 
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
- 
+
 @RestController
 @RequestMapping("/multas")
 public class MultaController {
@@ -18,7 +19,7 @@ public class MultaController {
     private MultaService multaService;
 
     @PostMapping
-    public ResponseEntity<MultaModel> createMulta(@RequestBody MultaModel multa) {
+    public ResponseEntity<MultaModel> createMulta(@Valid @RequestBody MultaModel multa) {
         return ResponseEntity.ok(multaService.createMulta(multa));
     }
 
@@ -38,7 +39,7 @@ public class MultaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MultaModel> updateMulta(@PathVariable UUID id, @RequestBody MultaModel multa) {
+    public ResponseEntity<MultaModel> updateMulta(@PathVariable UUID id, @Valid @RequestBody MultaModel multa) {
         MultaModel updatedMulta = multaService.updateMulta(id, multa);
         if (updatedMulta != null) {
             return ResponseEntity.ok(updatedMulta);

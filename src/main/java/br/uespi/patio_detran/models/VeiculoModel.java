@@ -1,33 +1,46 @@
 package br.uespi.patio_detran.models;
 
-import java.util.UUID;
-import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.UUID;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
-@Table(name="TB_VEICULO")
+@Table(name = "TB_VEICULO")
 public class VeiculoModel implements Serializable {
 
-    public static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    @NotNull(message = "O modelo não pode ser nulo")
+    @Size(min = 2, max = 50, message = "O modelo deve ter entre 2 e 50 caracteres")
     @Column(nullable = false)
     private String modelo;
 
+    @NotNull(message = "O nome não pode ser nulo")
+    @Size(min = 2, max = 50, message = "O nome deve ter entre 2 e 50 caracteres")
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
+    @NotNull(message = "A placa não pode ser nula")
+    @Size(min = 7, max = 7, message = "A placa deve ter exatamente 7 caracteres")
+    @Column(nullable = false, length = 7)
     private String placa;
 
-    @ManyToOne
-    @JoinColumn(name = "propietario_id")
-    private PessoaModel propietario;
+    @NotNull(message = "O tipo de veículo não pode ser nulo")
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TipoVeiculo tipoVeiculo;
 
-    // Getters and Setters
+    @ManyToOne
+    @JoinColumn(name = "proprietario_id")
+    private PessoaModel proprietario;
+
+    // Getters e Setters
 
     public UUID getId() {
         return id;
@@ -61,15 +74,23 @@ public class VeiculoModel implements Serializable {
         this.placa = placa;
     }
 
-    public PessoaModel getPropietario() {
-        return propietario;
+    public TipoVeiculo getTipoVeiculo() {
+        return tipoVeiculo;
     }
 
-    public void setPropietario(PessoaModel propietario) {
-        this.propietario = propietario;
+    public void setTipoVeiculo(TipoVeiculo tipoVeiculo) {
+        this.tipoVeiculo = tipoVeiculo;
     }
 
-    public static long getSerialversionuid() {
+    public PessoaModel getProprietario() {
+        return proprietario;
+    }
+
+    public void setProprietario(PessoaModel proprietario) {
+        this.proprietario = proprietario;
+    }
+
+    public static long getSerialVersionUID() {
         return serialVersionUID;
     }
 }
